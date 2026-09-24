@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UIWindow : MonoBehaviour
 {
+    [Header("Data")]
+    [SerializeField] private string _id;
     [Header("UI Settings")]
     [SerializeField] private RectTransform _canvasRectTransform;
     [SerializeField] private CanvasGroup _canvasGroup;
@@ -18,6 +20,7 @@ public class UIWindow : MonoBehaviour
 
     public CanvasGroup CanvasGroup => _canvasGroup;
     public RectTransform CanvasRectTransform => _canvasRectTransform;
+    public string Id => _id;
 
     void Start()
     {
@@ -28,7 +31,7 @@ public class UIWindow : MonoBehaviour
     {
         if (_hideOnStart)
         {
-            Hide();
+            Hide(true);
         }
     }
     public virtual void Show(bool instant = false)
