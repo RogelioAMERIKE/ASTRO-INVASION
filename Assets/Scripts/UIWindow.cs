@@ -1,21 +1,68 @@
+using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class UIWindow : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Data")]
+    [SerializeField] private string _id;
+    [Header("UI Settings")]
+    [SerializeField] private RectTransform _canvasRectTransform;
+    [SerializeField] private CanvasGroup _canvasGroup;
+    [SerializeField] private bool _hideOnStart;
+
+    [Header("Animation Settings")]
+    [SerializeField] private float showDuration = 0.5f;
+    [SerializeField] private float hideDuration = 0.5f;
+
+    [SerializeField] private Ease showEase = Ease.OutBack;
+    [SerializeField] private Ease hideEase = Ease.InBack;
+
+    public CanvasGroup CanvasGroup => _canvasGroup;
+    public RectTransform CanvasRectTransform => _canvasRectTransform;
+    public string Id => _id;
+
     void Start()
     {
-        
+        Initialize();
     }
 
-    // Update is called once per frame
-    public virtual void Show()
+    public virtual void Initialize()
     {
-        
+        if (_hideOnStart)
+        {
+            Hide(true);
+        }
     }
-
-    public virtual void Hide()
+    public virtual void Show(bool instant = false)
     {
-
+        if (instant)
+        {
+            _canvasRectTransform.gameObject.SetActive(true);
+        }
+        else
+        {
+            _canvasRectTransform.gameObject.SetActive(true);
+            RectTransform rectTransform = _canvasGroup.GetComponent<RectTransform>();
+            rectTransform.DOScale(Vector3.one, showDuration).SetEase(showEase);
+        }
     }
+
+    public virtual void Hide(bool instant = false)
+    {
+        if (instant)
+        {
+            _canvasRectTransform.gameObject.SetActive(false);
+        }
+        else
+        {
+            RectTransform rectTransform = _canvasGroup.GetComponent<RectTransform>();
+            rectTransform.DOScale(Vector3.zero, hideDuration).SetEase(hideEase).OnComplete(() =>
+            {
+                _canvasRectTransform.gameObject.SetActive(false);
+            });
+        }
+    }
+
+
 }
