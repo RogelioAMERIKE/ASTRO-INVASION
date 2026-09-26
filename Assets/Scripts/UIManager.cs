@@ -1,4 +1,5 @@
 using UnityEngine;
+using NaughtyAttributes;
 using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
@@ -6,9 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<UIWindow> _uiWindows;
     public List<UIWindow> UIWindows => _uiWindows;
 
-    void Start()
-    {
-    }
+    
 
     public void ShowWindow(string windowName)
     {
