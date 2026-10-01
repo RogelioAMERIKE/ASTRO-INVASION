@@ -4,10 +4,21 @@ using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
+
     [SerializeField] private List<UIWindow> _uiWindows;
     public List<UIWindow> UIWindows => _uiWindows;
+    public static UIManager Instance { get; private set; }
 
-    
+    private void Awake()
+    {
+        if(Instance != null &&  Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public void ShowWindow(string windowName)
     {
