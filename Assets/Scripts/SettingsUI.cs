@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 public class SettingsUI : UIWindow
 {
@@ -18,4 +19,18 @@ public class SettingsUI : UIWindow
     {
         Debug.Log($"Volume changed to: {value}");
     }
+
+    #region Test Methods
+    [Button("Test Show")]
+    private void TestShow()
+    {
+        Show();
+    }
+
+    [Button("Test Hide")]
+    private void TestHide()
+    {
+        Hide();
+    }
+    #endregion
 }

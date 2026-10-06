@@ -1,16 +1,19 @@
 using UnityEngine;
+using NaughtyAttributes;
 
 public class PauseUI : UIWindow
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    #region Test Methods
+    [Button("Test Show")]
+    private void TestShow()
     {
-        
+        Show();
     }
 
-    // Update is called once per frame
-    void Update()
+    [Button("Test Hide")]
+    private void TestHide()
     {
-        
+        Hide();
     }
+    #endregion
 }
