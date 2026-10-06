@@ -22,6 +22,8 @@ public class UIWindow : MonoBehaviour
     public RectTransform CanvasRectTransform => _canvasRectTransform;
     public string Id => _id;
 
+    private bool _isShowing = false;
+
     void Start()
     {
         Initialize();
@@ -42,9 +44,13 @@ public class UIWindow : MonoBehaviour
         }
         else
         {
+            _isShowing = true;
             _canvasRectTransform.gameObject.SetActive(true);
             RectTransform rectTransform = _canvasGroup.GetComponent<RectTransform>();
-            rectTransform.DOScale(Vector3.one, showDuration).SetEase(showEase);
+            rectTransform.DOScale(Vector3.one, showDuration).SetEase(showEase).OnComplete(() =>
+            {
+                _isShowing = false;
+            });
         }
     }
 
@@ -56,6 +62,11 @@ public class UIWindow : MonoBehaviour
         }
         else
         {
+            if (_isShowing)
+            {
+                Debug.Log("Window is currently showing. Cannot hide until the show animation is complete.");
+                return;
+            }
             RectTransform rectTransform = _canvasGroup.GetComponent<RectTransform>();
             rectTransform.DOScale(Vector3.zero, hideDuration).SetEase(hideEase).OnComplete(() =>
             {
