@@ -54,9 +54,9 @@ public class ResponsiveManager : MonoBehaviour
 
     private void Start()
     {
-        // Debug.Log(CurrentScreenSize);
-        // Debug.Log(CurrentOrientation);
-        // Debug.Log(CurrentDeviceType);
+        Debug.Log(CurrentScreenSize);
+        Debug.Log(CurrentOrientation);
+        Debug.Log(CurrentDeviceType);
     }
 
     #endregion
