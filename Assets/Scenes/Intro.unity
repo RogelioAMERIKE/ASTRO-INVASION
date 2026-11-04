@@ -1014,6 +1014,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4114870171568736149, guid: e7543a31aaed2f34d8504b385d6a9f26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6068714715822626699, guid: e7543a31aaed2f34d8504b385d6a9f26, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
