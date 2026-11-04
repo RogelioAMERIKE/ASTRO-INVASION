@@ -687,6 +687,8 @@ MonoBehaviour:
   hideDuration: 0.5
   showEase: 18
   hideEase: 17
+  _resumeButton: {fileID: 3649859858023698720}
+  _menuButton: {fileID: 4287989399744730827}
 --- !u!1 &4154187867759921255
 GameObject:
   m_ObjectHideFlags: 0

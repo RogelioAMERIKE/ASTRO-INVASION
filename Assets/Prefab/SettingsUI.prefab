@@ -1494,6 +1494,8 @@ MonoBehaviour:
   showEase: 18
   hideEase: 17
   _volumeSlider: {fileID: 6187218958266192856}
+  _backButton: {fileID: 2153761340699565093}
+  _creditsButton: {fileID: 2496736687221933860}
 --- !u!1 &4328095652239949160
 GameObject:
   m_ObjectHideFlags: 0

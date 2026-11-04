@@ -834,7 +834,7 @@ GameObject:
   - component: {fileID: 1449429823667476122}
   - component: {fileID: 2153761340699565093}
   m_Layer: 5
-  m_Name: ReturnButton
+  m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -995,6 +995,7 @@ MonoBehaviour:
   hideDuration: 0.5
   showEase: 18
   hideEase: 17
+  _pauseButton: {fileID: 2153761340699565093}
 --- !u!1 &5893037295226476663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,7 +1394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.71697915, y: 0.89196265}
   m_AnchorMax: {x: 0.8284493, y: 0.9537438}
-  m_AnchoredPosition: {x: 0, y: 2.6234}
+  m_AnchoredPosition: {x: 0, y: 2.623413}
   m_SizeDelta: {x: 0.000061035156, y: 0.000061035156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4422242084252491948

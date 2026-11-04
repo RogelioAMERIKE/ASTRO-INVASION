@@ -9,6 +9,18 @@ public class TitleUI : UIWindow
     public override void Initialize()
     {
         base.Initialize();
+        button.onClick.AddListener(CloseTitle);
+    }
+
+    private void CloseTitle()
+    {
+        UIManager.Instance.HideWindow("titleui");
+        Invoke(nameof(OpenMenu), 1f);
+    }
+
+    private void OpenMenu()
+    {
+        UIManager.Instance.ShowWindow("menuui");
     }
     #region Test Methods
     [Button("Test Show")]

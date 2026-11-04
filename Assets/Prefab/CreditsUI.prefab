@@ -479,6 +479,7 @@ MonoBehaviour:
   hideDuration: 0.5
   showEase: 18
   hideEase: 17
+  _backButton: {fileID: 6884080903520636834}
 --- !u!1 &6579484988192783507
 GameObject:
   m_ObjectHideFlags: 0
