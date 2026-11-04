@@ -9,13 +9,6 @@ public class TitleUI : UIWindow
     public override void Initialize()
     {
         base.Initialize();
-        button.onClick.LoadScene(sceneName);
-    }
-
-    private void LoadScene(string sceneName)
-    {
-
-        SceneManager.LoadScene(sceneName);
     }
     #region Test Methods
     [Button("Test Show")]
