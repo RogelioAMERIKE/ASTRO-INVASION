@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
 
         State = GameState.Paused;
         Time.timeScale = 0f;
+        GameAudio.PauseMusic();
         return true;
     }
 
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
 
         State = GameState.Playing;
         Time.timeScale = 1f;
+        GameAudio.ResumeMusic();
     }
 
     public void PlayerDied()
@@ -102,6 +104,7 @@ public class GameManager : MonoBehaviour
 
         State = GameState.GameOver;
         Time.timeScale = 0f;
+        GameAudio.StopMusic();
 
         PlayerData.AddCoins(RoundCoins);
         _roundSaved = true;

@@ -1,11 +1,13 @@
-using UnityEngine;
-using UnityEngine.UI;
 using NaughtyAttributes;
-
+using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 public class SettingsUI : UIWindow
 {
     [Header("SettingsUI")]
-    [SerializeField] private Slider _volumeSlider;
+    [FormerlySerializedAs("_volumeSlider")]
+    [SerializeField] private Slider _musicSlider;
+    [SerializeField] private Slider _sfxSlider;
     public Button _backButton;
     public Button _creditsButton;
 
@@ -13,7 +15,12 @@ public class SettingsUI : UIWindow
     public override void Initialize()
     {
         base.Initialize();
-        _volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+
+        _musicSlider.SetValueWithoutNotify(GameAudio.MusicVolume);
+        _sfxSlider.SetValueWithoutNotify(GameAudio.SfxVolume);
+
+        _musicSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
+        _sfxSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
         _backButton.onClick.AddListener(ReturnToMenu);
         _creditsButton.onClick.AddListener(OpenCredits);
 
@@ -40,9 +47,15 @@ public class SettingsUI : UIWindow
     {
         UIManager.Instance.ShowWindow("creditsui");
     }
-    private void OnVolumeChanged(float value)
+
+    private void OnMusicVolumeChanged(float value)
     {
-        Debug.Log($"Volume changed to: {value}");
+        GameAudio.SetMusicVolume(value);
+    }
+
+    private void OnSfxVolumeChanged(float value)
+    {
+        GameAudio.SetSfxVolume(value);
     }
 
     #region Test Methods

@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 5293376161001076418}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.328, y: -1.318, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -7.478, y: -1.517, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.3568415}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,7 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBullet
   _speed: 15
   _lifetime: 2
-  _damage: 1
 --- !u!58 &7445394933836836770
 CircleCollider2D:
   m_ObjectHideFlags: 0

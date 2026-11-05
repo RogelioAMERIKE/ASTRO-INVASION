@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d6c1594d4578046bf504680097fdcf, type: 3}
+  m_Name: AudioManagerData
+  m_EditorClassIdentifier: Assembly-CSharp::Dino.Utility.Audio.AudioManagerData
+  _sfxAudioMixerGroup: {fileID: 3061134537644740135, guid: 51b9a6af2e58661438198e6d9f17b8c9, type: 2}
+  _sfxVolumeParameterName: SFXVolume
+  _musicAudioMixerGroup: {fileID: -6529873006505640214, guid: 51b9a6af2e58661438198e6d9f17b8c9, type: 2}
+  _musicVolumeParameterName: MusicVolume
+  _ambienceAudioMixerGroup: {fileID: 0}
+  _ambienceVolumeParameterName: AmbienceVolume
+  audioData:
+  - name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 0
+    audioType: 0
+  - name: button
+    clip: {fileID: 8300000, guid: ebb81feff56e09b48b0abdc1a0fd322d, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: jump
+    clip: {fileID: 8300000, guid: ebb81feff56e09b48b0abdc1a0fd322d, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: drop
+    clip: {fileID: 8300000, guid: ebb81feff56e09b48b0abdc1a0fd322d, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: shot
+    clip: {fileID: 8300000, guid: ebb81feff56e09b48b0abdc1a0fd322d, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: menu_music
+    clip: {fileID: 8300000, guid: 341f63bf829417b4491ae0d7fb3adda3, type: 3}
+    loop: 1
+    volume: 1
+    pitch: 1
+    audioType: 0
+  - name: gameplay_music
+    clip: {fileID: 8300000, guid: 341f63bf829417b4491ae0d7fb3adda3, type: 3}
+    loop: 1
+    volume: 1
+    pitch: 1
+    audioType: 0

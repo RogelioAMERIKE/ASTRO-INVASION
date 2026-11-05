@@ -6,7 +6,7 @@ public class AreaSpawner : MonoBehaviour
     [SerializeField] private GameObject _prefab;
     [SerializeField] private int _prewarm = 3;
 
-    [Header("Spawn Area (centrada en este objeto)")]
+    [Header("Spawn Area")]
     [SerializeField] private Vector2 _areaSize = new Vector2(2f, 6f);
     [SerializeField] private Color _gizmoColor = Color.yellow;
 
@@ -15,11 +15,11 @@ public class AreaSpawner : MonoBehaviour
     [SerializeField] private float _minInterval = 5f;
     [SerializeField] private float _maxInterval = 5f;
 
-    [Header("Objetos spawneados (si el prefab tiene ScrollingObject)")]
+    [Header("Objetos spawneados")]
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _lifetime = 30f;
 
-    [Header("Límite (0 = sin límite)")]
+    [Header("Límite ")]
     [SerializeField] private int _maxAlive = 0;
 
     private ObjectPool _pool;
