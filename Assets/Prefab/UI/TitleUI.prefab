@@ -462,10 +462,10 @@ RectTransform:
   - {fileID: 8181713081663050752}
   m_Father: {fileID: 1536903325478160862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.073846154, y: 0.007611798}
-  m_AnchorMax: {x: 0.89692307, y: 0.9124643}
-  m_AnchoredPosition: {x: 30.971, y: -582}
-  m_SizeDelta: {x: -674.15027, y: -595.7527}
+  m_AnchorMin: {x: 0.32077906, y: -0.34974024}
+  m_AnchorMax: {x: 0.65608275, y: -0.10691599}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &623188893904144505
 CanvasRenderer:
