@@ -258,7 +258,7 @@ MonoBehaviour:
   _startDelay: 5
   _minInterval: 5
   _maxInterval: 5
-  _speed: 5
+  _speed: 12
   _lifetime: 30
   _maxAlive: 0
 --- !u!4 &275063997
@@ -848,7 +848,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1183431910509135139, guid: 2d0d964d973155b4aa2b9649348f68d7, type: 3}
       propertyPath: _jumpForce
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1183431910509135139, guid: 2d0d964d973155b4aa2b9649348f68d7, type: 3}
       propertyPath: _groundMask.m_Bits
@@ -868,15 +868,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3860697357937380702, guid: 2d0d964d973155b4aa2b9649348f68d7, type: 3}
       propertyPath: m_GravityScale
-      value: 1
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301688023767230080, guid: 2d0d964d973155b4aa2b9649348f68d7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7819
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301688023767230080, guid: 2d0d964d973155b4aa2b9649348f68d7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7819
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301688023767230080, guid: 2d0d964d973155b4aa2b9649348f68d7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7819
       objectReference: {fileID: 0}
     - target: {fileID: 6301688023767230080, guid: 2d0d964d973155b4aa2b9649348f68d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.513
+      value: -6.622
       objectReference: {fileID: 0}
     - target: {fileID: 6301688023767230080, guid: 2d0d964d973155b4aa2b9649348f68d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.478
+      value: -3.6961
       objectReference: {fileID: 0}
     - target: {fileID: 6301688023767230080, guid: 2d0d964d973155b4aa2b9649348f68d7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1230,7 +1242,7 @@ MonoBehaviour:
   _startDelay: 4
   _minInterval: 4
   _maxInterval: 8
-  _speed: 5
+  _speed: 14
   _lifetime: 30
   _maxAlive: 0
 --- !u!4 &2091143855
