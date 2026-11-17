@@ -324,7 +324,7 @@ MonoBehaviour:
   _prewarm: 3
   _areaSize: {x: 1.89, y: 0.64}
   _gizmoColor: {r: 1, g: 0.59536403, b: 0.015686274, a: 1}
-  _startDelay: 4
+  _startDelay: 8
   _minInterval: 2
   _maxInterval: 5
   _speed: 9
@@ -751,11 +751,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AreaSpawner
   _prefab: {fileID: 8519475009105726331, guid: 3f03d8e9df964a844bd8ebb986263ba7, type: 3}
   _prewarm: 3
-  _areaSize: {x: 1.13, y: 0.49}
+  _areaSize: {x: 1.5, y: 0.01}
   _gizmoColor: {r: 0.7433963, g: 0.7433963, b: 0.7433963, a: 1}
   _startDelay: 1
   _minInterval: 0.5
-  _maxInterval: 1.5
+  _maxInterval: 1
   _speed: 10
   _lifetime: 30
   _maxAlive: 0
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AreaSpawner
   _prefab: {fileID: 8519475009105726331, guid: 3f03d8e9df964a844bd8ebb986263ba7, type: 3}
   _prewarm: 3
-  _areaSize: {x: 1.13, y: 0.58}
+  _areaSize: {x: 1.5, y: 0.01}
   _gizmoColor: {r: 0.7433963, g: 0.7433963, b: 0.7433963, a: 1}
   _startDelay: 0
   _minInterval: 1
@@ -1150,7 +1150,7 @@ MonoBehaviour:
   _prewarm: 3
   _areaSize: {x: 1.89, y: 1.16}
   _gizmoColor: {r: 1, g: 0.59536403, b: 0.015686274, a: 1}
-  _startDelay: 6
+  _startDelay: 10
   _minInterval: 2
   _maxInterval: 8
   _speed: 9
@@ -1237,12 +1237,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AreaSpawner
   _prefab: {fileID: 8701173174199167033, guid: 6d40fb60b36ece7409df0a8f0d527b3a, type: 3}
   _prewarm: 3
-  _areaSize: {x: 2, y: 0.28}
+  _areaSize: {x: 1, y: 0.1}
   _gizmoColor: {r: 1, g: 0.117322505, b: 0, a: 1}
-  _startDelay: 4
-  _minInterval: 4
-  _maxInterval: 8
-  _speed: 14
+  _startDelay: 2
+  _minInterval: 2
+  _maxInterval: 6
+  _speed: 12
   _lifetime: 30
   _maxAlive: 0
 --- !u!4 &2091143855
@@ -1254,7 +1254,7 @@ Transform:
   m_GameObject: {fileID: 2091143853}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.7683, y: -4.429, z: 0}
+  m_LocalPosition: {x: 7.7683, y: -4.457, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1293,7 +1293,7 @@ MonoBehaviour:
   _prewarm: 3
   _areaSize: {x: 1.89, y: 1.16}
   _gizmoColor: {r: 1, g: 0.59536403, b: 0.015686274, a: 1}
-  _startDelay: 2
+  _startDelay: 6
   _minInterval: 5
   _maxInterval: 5
   _speed: 9
