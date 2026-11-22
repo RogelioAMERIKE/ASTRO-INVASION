@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7421881047564876357}
   - component: {fileID: 1956679215480164485}
   - component: {fileID: 3673134662332432459}
+  - component: {fileID: -4565944158591794414}
   m_Layer: 11
   m_Name: EnemyBullet
   m_TagString: Untagged
@@ -159,3 +160,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c96fbee139dba943ae0a1efb22f27c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hazard
+--- !u!114 &-4565944158591794414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774563357540196387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01b5e10fe45eda45965b190cdc3daf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBullet
+  _hitEffect: {fileID: 0}
+  _effectTime: 0.5
+  _hitSound: enemy_bullet_hit

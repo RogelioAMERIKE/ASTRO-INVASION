@@ -24,6 +24,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _fireCooldown = 0.25f;
 
+    [Header("Animation")]
+    [SerializeField] private Animator _animator;
+
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem _explosionEffect;
+    [SerializeField] private string _deathSound = "player_death";
+
     private Rigidbody2D _rb;
     private Collider2D _col;
     private ObjectPool _bulletPool;
@@ -90,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
         Velocity = new Vector2(0f, _jumpForce);
         StartGhost(GhostMode.Rising);
+        PlayAnimation("Jump");
     }
 
     public void Drop()
@@ -99,6 +107,7 @@ public class PlayerController : MonoBehaviour
         if (IsOnGround()) return;
 
         StartGhost(GhostMode.Timed);
+        PlayAnimation("Down");
     }
 
     public void Shoot()
@@ -112,6 +121,19 @@ public class PlayerController : MonoBehaviour
         if (_firePoint != null) origin = _firePoint.position;
 
         _bulletPool.Get(origin);
+        PlayAnimation("Shoot");
+    }
+
+    private void PlayAnimation(string trigger)
+    {
+        if (_animator != null) _animator.SetTrigger(trigger);
+    }
+
+    private void Explode()
+    {
+        if (_sprite != null) _sprite.enabled = false;
+        if (_explosionEffect != null) _explosionEffect.Play();
+        GameAudio.PlaySfx(_deathSound);
     }
 
     private void StartGhost(GhostMode mode)
@@ -174,6 +196,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.GetComponentInParent<Hazard>() != null)
         {
+            Explode();
             GameManager.Instance.PlayerDied();
             return;
         }

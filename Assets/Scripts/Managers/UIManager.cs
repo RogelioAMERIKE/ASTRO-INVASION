@@ -1,18 +1,18 @@
-using UnityEngine;
+using DG.Tweening;
 using NaughtyAttributes;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-
     [SerializeField] private List<UIWindow> _uiWindows;
     public List<UIWindow> UIWindows => _uiWindows;
     public static UIManager Instance { get; private set; }
 
     private void Awake()
     {
-        if(Instance != null &&  Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;

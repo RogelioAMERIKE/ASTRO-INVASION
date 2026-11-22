@@ -127,6 +127,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Coin
   _value: 1
   _collectSound: coin
+  _collectEffect: {fileID: 0}
+  _effectTime: 0.5
+  _visual: {fileID: 2901649889147852464}
+  _sprite: {fileID: 6799139633737292685}
+  _animator: {fileID: 1182916874722844470}
+  _popScale: 1.6
+  _popTime: 0.09
 --- !u!58 &2704300900125489394
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -61,3 +61,21 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioType: 0
+  - name: obstacle
+    clip: {fileID: 8300000, guid: 2866123bcc81e9646af5661861b811d4, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: coin
+    clip: {fileID: 8300000, guid: 14bbf434582b1b24f9458917eb958ac7, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: enemy_explosion
+    clip: {fileID: 8300000, guid: bc4b003960fd4c0479c0e2ec5bb6ac04, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PlayerController _player;
     [SerializeField] private float _uiDelay = 1f;
+    [SerializeField] private float _slowDownTime = 3f;
 
     public PlayerController Player
     {
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     private float _elapsed;
     private bool _roundSaved;
+    private Tween _slowTween;
 
     private void Awake()
     {
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         if (Instance == this) Instance = null;
+        if (_slowTween != null) _slowTween.Kill();
         Time.timeScale = 1f;
     }
 
@@ -103,8 +106,9 @@ public class GameManager : MonoBehaviour
         if (State != GameState.Playing) return;
 
         State = GameState.GameOver;
-        Time.timeScale = 0f;
-        GameAudio.StopMusic();
+
+        GameAudio.FadeOutMusic(_slowDownTime);
+        _slowTween = DOVirtual.Float(1f, 0f, _slowDownTime, SetTimeScale).SetUpdate(true);
 
         PlayerData.AddCoins(RoundCoins);
         _roundSaved = true;
@@ -115,6 +119,11 @@ public class GameManager : MonoBehaviour
         if (UIManager.Instance == null) return;
         UIManager.Instance.HideWindow("gameplayui");
         DOVirtual.DelayedCall(_uiDelay, ShowScoreUI, true);
+    }
+
+    private void SetTimeScale(float value)
+    {
+        Time.timeScale = value;
     }
 
     private void ShowScoreUI()

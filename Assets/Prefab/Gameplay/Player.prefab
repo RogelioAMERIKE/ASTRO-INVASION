@@ -218,3 +218,5 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 5293376161001076418, guid: 432227814cbb32847bd0e0afa9188af4, type: 3}
   _firePoint: {fileID: 5067451106115958516}
   _fireCooldown: 0.25
+  _animator: {fileID: 0}
+  _explosionEffect: {fileID: 0}

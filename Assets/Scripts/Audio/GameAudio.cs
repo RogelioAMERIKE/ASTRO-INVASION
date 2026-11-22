@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Dino.Utility.Audio;
 using UnityEngine;
 using AudioType = Dino.Utility.Audio.AudioType;
@@ -9,6 +10,10 @@ public class GameAudio : MonoBehaviour
     private const float DefaultVolume = 0.8f;
 
     private static string _currentMusic;
+    private static Tween _fadeTween;
+    private static AudioSource _fadeSource;
+    private static float _fadePitch;
+    private static float _fadeVolume;
 
     public static float MusicVolume
     {
@@ -25,7 +30,12 @@ public class GameAudio : MonoBehaviour
         if (string.IsNullOrEmpty(soundName)) return;
         if (AudioManager.Instance == null) return;
 
-        AudioManager.Instance.PlaySound(soundName);
+        string[] names = soundName.Split(',');
+        for (int i = 0; i < names.Length; i++)
+        {
+            string name = names[i].Trim();
+            if (name != "") AudioManager.Instance.PlaySound(name);
+        }
     }
 
     public static void PlayMusic(string musicName)
@@ -33,6 +43,7 @@ public class GameAudio : MonoBehaviour
         if (string.IsNullOrEmpty(musicName)) return;
         if (AudioManager.Instance == null) return;
 
+        CancelFade();
         StopMusic();
 
         _currentMusic = musicName;
@@ -51,6 +62,20 @@ public class GameAudio : MonoBehaviour
         if (AudioManager.Instance == null) return;
 
         AudioManager.Instance.StopSound(_currentMusic);
+    }
+
+    public static void FadeOutMusic(float duration)
+    {
+        AudioSource source = FindMusicSource();
+        if (source == null) return;
+
+        CancelFade();
+
+        _fadeSource = source;
+        _fadePitch = source.pitch;
+        _fadeVolume = source.volume;
+
+        _fadeTween = DOVirtual.Float(1f, 0f, duration, SetFade).SetUpdate(true).OnComplete(FinishFade);
     }
 
     public static void PauseMusic()
@@ -93,6 +118,36 @@ public class GameAudio : MonoBehaviour
 
         AudioManager.Instance.UpdateAudioMixerGroupVolume(MusicVolume, AudioType.Music);
         AudioManager.Instance.UpdateAudioMixerGroupVolume(SfxVolume, AudioType.SFX);
+    }
+
+    private static void SetFade(float value)
+    {
+        _fadeSource.pitch = _fadePitch * value;
+        _fadeSource.volume = _fadeVolume * value;
+    }
+
+    private static void FinishFade()
+    {
+        _fadeTween = null;
+        _fadeSource.Stop();
+        RestoreFade();
+    }
+
+    private static void CancelFade()
+    {
+        if (_fadeTween == null) return;
+
+        _fadeTween.Kill();
+        _fadeTween = null;
+        RestoreFade();
+    }
+
+    private static void RestoreFade()
+    {
+        if (_fadeSource == null) return;
+
+        _fadeSource.pitch = _fadePitch;
+        _fadeSource.volume = _fadeVolume;
     }
 
     private static AudioSource FindMusicSource()
