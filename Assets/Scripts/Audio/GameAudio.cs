@@ -38,6 +38,18 @@ public class GameAudio : MonoBehaviour
         }
     }
 
+    public static void FadeOutSfx(string soundName, float delay, float duration)
+    {
+        if (string.IsNullOrEmpty(soundName)) return;
+        if (duration <= 0f) return;
+
+        string[] names = soundName.Split(',');
+        for (int i = 0; i < names.Length; i++)
+        {
+            FadeOutOneSfx(names[i].Trim(), delay, duration);
+        }
+    }
+
     public static void PlayMusic(string musicName)
     {
         if (string.IsNullOrEmpty(musicName)) return;
@@ -120,6 +132,27 @@ public class GameAudio : MonoBehaviour
         AudioManager.Instance.UpdateAudioMixerGroupVolume(SfxVolume, AudioType.SFX);
     }
 
+    private static void FadeOutOneSfx(string soundName, float delay, float duration)
+    {
+        AudioSource source = FindSource(soundName);
+        if (source == null) return;
+
+        float startVolume = AudioManager.Instance.AudioManagerData.GetAudioData(soundName).volume;
+
+        DOTween.Kill(source);
+        source.volume = startVolume;
+
+        DOVirtual.Float(1f, 0f, duration, value => source.volume = startVolume * value)
+            .SetTarget(source)
+            .SetDelay(delay)
+            .SetUpdate(true)
+            .OnComplete(() =>
+            {
+                source.Stop();
+                source.volume = startVolume;
+            });
+    }
+
     private static void SetFade(float value)
     {
         _fadeSource.pitch = _fadePitch * value;
@@ -152,10 +185,15 @@ public class GameAudio : MonoBehaviour
 
     private static AudioSource FindMusicSource()
     {
-        if (string.IsNullOrEmpty(_currentMusic)) return null;
+        return FindSource(_currentMusic);
+    }
+
+    private static AudioSource FindSource(string soundName)
+    {
+        if (string.IsNullOrEmpty(soundName)) return null;
         if (AudioManager.Instance == null) return null;
 
-        AudioData data = AudioManager.Instance.AudioManagerData.GetAudioData(_currentMusic);
+        AudioData data = AudioManager.Instance.AudioManagerData.GetAudioData(soundName);
         if (data == null) return null;
 
         AudioSource[] sources = AudioManager.Instance.GetComponentsInChildren<AudioSource>(true);

@@ -32,19 +32,19 @@ MonoBehaviour:
     pitch: 1
     audioType: 1
   - name: jump
-    clip: {fileID: 8300000, guid: ebb81feff56e09b48b0abdc1a0fd322d, type: 3}
+    clip: {fileID: 8300000, guid: 0298272472729c444bce2d1cb6ec9844, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     audioType: 1
   - name: drop
-    clip: {fileID: 8300000, guid: ebb81feff56e09b48b0abdc1a0fd322d, type: 3}
+    clip: {fileID: 8300000, guid: 0298272472729c444bce2d1cb6ec9844, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     audioType: 1
-  - name: shot
-    clip: {fileID: 8300000, guid: ebb81feff56e09b48b0abdc1a0fd322d, type: 3}
+  - name: shoot
+    clip: {fileID: 8300000, guid: 8897f7e8a7bbff040a42bf2525d75e42, type: 3}
     loop: 0
     volume: 1
     pitch: 1
@@ -75,6 +75,30 @@ MonoBehaviour:
     audioType: 1
   - name: enemy_explosion
     clip: {fileID: 8300000, guid: bc4b003960fd4c0479c0e2ec5bb6ac04, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: scene_start
+    clip: {fileID: 8300000, guid: 540cd4256849d2f429a9a2a33963dc52, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: player_death
+    clip: {fileID: 8300000, guid: f62f480e5af787f478d8e9fd3751ab5d, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: big_enemy_explosion
+    clip: {fileID: 8300000, guid: 9f0d2311776d5ce418e8ed42f558e4ac, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: enemy_shoot
+    clip: {fileID: 8300000, guid: 478af4f479f2d9543a0cfa513e5bd6ad, type: 3}
     loop: 0
     volume: 1
     pitch: 1

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -28,8 +29,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     [Header("Effects")]
+    [SerializeField] private ParticleSystem _shootEffect;
     [SerializeField] private ParticleSystem _explosionEffect;
     [SerializeField] private string _deathSound = "player_death";
+
+    [Header("Sounds")]
+    [SerializeField] private string _jumpSound = "jump";
+    [SerializeField] private string _dropSound = "drop";
+    [SerializeField] private string _shootSound = "shoot";
+
+    [Header("Entrance")]
+    [SerializeField] private Vector2 _entranceOffset = new Vector2(-8f, 0f);
+    [SerializeField] private float _entranceTime = 1f;
 
     private Rigidbody2D _rb;
     private Collider2D _col;
@@ -38,6 +49,8 @@ public class PlayerController : MonoBehaviour
     private GhostMode _ghostMode = GhostMode.None;
     private float _ghostTimer;
     private float _nextFireTime;
+    private bool _entering;
+    private float _defaultGravity;
 
     private bool IsGhost
     {
@@ -48,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
+            if (_entering) return false;
             if (GameManager.Instance == null) return false;
             return GameManager.Instance.State == GameState.Playing;
         }
@@ -65,6 +79,16 @@ public class PlayerController : MonoBehaviour
         _col = GetComponent<Collider2D>();
         _rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         _bulletPool = new ObjectPool(_bulletPrefab, 10);
+    }
+
+    private void Start()
+    {
+        StartEntrance();
+    }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
     }
 
     private void OnDisable()
@@ -98,6 +122,7 @@ public class PlayerController : MonoBehaviour
         Velocity = new Vector2(0f, _jumpForce);
         StartGhost(GhostMode.Rising);
         PlayAnimation("Jump");
+        GameAudio.PlaySfx(_jumpSound);
     }
 
     public void Drop()
@@ -108,6 +133,7 @@ public class PlayerController : MonoBehaviour
 
         StartGhost(GhostMode.Timed);
         PlayAnimation("Down");
+        GameAudio.PlaySfx(_dropSound);
     }
 
     public void Shoot()
@@ -122,6 +148,29 @@ public class PlayerController : MonoBehaviour
 
         _bulletPool.Get(origin);
         PlayAnimation("Shoot");
+        if (_shootEffect != null) _shootEffect.Play();
+        GameAudio.PlaySfx(_shootSound);
+    }
+
+    private void StartEntrance()
+    {
+        if (_entranceTime <= 0f) return;
+
+        Vector3 endPosition = transform.position;
+        transform.position = endPosition + (Vector3)_entranceOffset;
+
+        _entering = true;
+        _defaultGravity = _rb.gravityScale;
+        _rb.gravityScale = 0f;
+        Velocity = Vector2.zero;
+
+        transform.DOMove(endPosition, _entranceTime).SetEase(Ease.OutCubic).OnComplete(EndEntrance);
+    }
+
+    private void EndEntrance()
+    {
+        _rb.gravityScale = _defaultGravity;
+        _entering = false;
     }
 
     private void PlayAnimation(string trigger)
