@@ -157,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 7560184911954365730}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.568, y: -0.123, z: 0}
+  m_LocalPosition: {x: 0.568, y: -0.429, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -289,6 +289,7 @@ MonoBehaviour:
   _shootEffect: {fileID: 598139046050455711}
   _recoilDistance: 0.6
   _recoilTime: 1.1
+  _shootSound: enemy_shoot
 --- !u!1001 &2606767626856365061
 PrefabInstance:
   m_ObjectHideFlags: 0

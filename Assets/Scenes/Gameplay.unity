@@ -483,6 +483,9 @@ MonoBehaviour:
   _shakeOnStart: 1
   _startIntensity: 3
   _startDuration: 0.5
+  _startSound: scene_start
+  _soundFadeDelay: 0
+  _soundFadeTime: 3
 --- !u!1 &587904080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,7 +1568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2091143854
 MonoBehaviour:
   m_ObjectHideFlags: 0

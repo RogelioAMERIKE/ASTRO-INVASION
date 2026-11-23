@@ -303,7 +303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6266429403327615663, guid: 69b53fda3a5b6ef4b959f95c8baef4bf, type: 3}
       propertyPath: ShapeModule.angle
-      value: 19.3
+      value: 13.83
       objectReference: {fileID: 0}
     - target: {fileID: 6266429403327615663, guid: 69b53fda3a5b6ef4b959f95c8baef4bf, type: 3}
       propertyPath: ShapeModule.m_Scale.z
@@ -352,6 +352,18 @@ PrefabInstance:
     - target: {fileID: 6266429403327615663, guid: 69b53fda3a5b6ef4b959f95c8baef4bf, type: 3}
       propertyPath: InitialModule.startSpeed.minScalar
       value: 3.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 6266429403327615663, guid: 69b53fda3a5b6ef4b959f95c8baef4bf, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key4.b
+      value: 0.20754719
+      objectReference: {fileID: 0}
+    - target: {fileID: 6266429403327615663, guid: 69b53fda3a5b6ef4b959f95c8baef4bf, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key4.g
+      value: 0.13034508
+      objectReference: {fileID: 0}
+    - target: {fileID: 6266429403327615663, guid: 69b53fda3a5b6ef4b959f95c8baef4bf, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key4.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6475879942901961074, guid: 69b53fda3a5b6ef4b959f95c8baef4bf, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
