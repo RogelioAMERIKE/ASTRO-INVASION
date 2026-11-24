@@ -30,9 +30,12 @@ public class ButtonSoundManager : MonoBehaviour
 
         for (int i = 0; i < buttons.Length; i++)
         {
+            if (buttons[i].GetComponent<NoButtonSound>() != null) continue;
+
             if (buttons[i].GetComponent<ButtonSound>() == null)
             {
-                buttons[i].gameObject.AddComponent<ButtonSound>();
+                ButtonSound sound = buttons[i].gameObject.AddComponent<ButtonSound>();
+                sound.SetLockUI(true);
             }
         }
     }

@@ -48,6 +48,7 @@ public class UIFlow : MonoBehaviour
         UIWindow window = FindWindow(id);
         if (window == null) return;
 
+        window.CanvasGroup.transform.DOKill();
         window.Show();
 
         _busyUntil = Time.unscaledTime + ShowLockTime;
@@ -59,6 +60,7 @@ public class UIFlow : MonoBehaviour
         UIWindow window = FindWindow(id);
         if (window == null) return;
 
+        window.CanvasGroup.transform.DOComplete();
         window.Hide();
         DOVirtual.DelayedCall(HideRetryTime, () => HideAgain(id), true);
     }
@@ -66,6 +68,9 @@ public class UIFlow : MonoBehaviour
     private static void HideAgain(string id)
     {
         UIWindow window = FindWindow(id);
-        if (window != null) window.Hide();
+        if (window == null) return;
+
+        window.CanvasGroup.transform.DOComplete();
+        window.Hide();
     }
 }

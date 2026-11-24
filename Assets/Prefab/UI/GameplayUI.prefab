@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 2641260882350986677}
   - component: {fileID: 854346795333738201}
   - component: {fileID: 6576464752360995577}
+  - component: {fileID: 2081065253576983574}
   m_Layer: 5
   m_Name: UpButton
   m_TagString: Untagged
@@ -170,6 +171,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2081065253576983574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073329634505465713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091f1a102d585de4899e5afe43ff5cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoButtonSound
 --- !u!1 &1165510361657771829
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +373,7 @@ GameObject:
   - component: {fileID: 6345512612863839315}
   - component: {fileID: 8213495448913734141}
   - component: {fileID: 2464371142261003390}
+  - component: {fileID: 2357563592937663518}
   m_Layer: 5
   m_Name: ShootButton
   m_TagString: Untagged
@@ -469,6 +483,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2357563592937663518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803687187575693236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091f1a102d585de4899e5afe43ff5cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoButtonSound
 --- !u!1 &2876486893328551736
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,6 +738,7 @@ GameObject:
   - component: {fileID: 9128431728124603383}
   - component: {fileID: 1880124140912565884}
   - component: {fileID: 7727379563545964102}
+  - component: {fileID: 8566501535387041254}
   m_Layer: 5
   m_Name: DownButton
   m_TagString: Untagged
@@ -821,6 +848,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8566501535387041254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802017704384088754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091f1a102d585de4899e5afe43ff5cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoButtonSound
 --- !u!1 &3826606710613739039
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,13 +50,13 @@ MonoBehaviour:
     pitch: 1
     audioType: 1
   - name: menu_music
-    clip: {fileID: 8300000, guid: 341f63bf829417b4491ae0d7fb3adda3, type: 3}
+    clip: {fileID: 8300000, guid: 9a23e5290e0c1c0458d9d91807621a3c, type: 3}
     loop: 1
     volume: 1
     pitch: 1
     audioType: 0
   - name: gameplay_music
-    clip: {fileID: 8300000, guid: 341f63bf829417b4491ae0d7fb3adda3, type: 3}
+    clip: {fileID: 8300000, guid: 96e434b7fb8f1ce4c9edbb66bd3fac39, type: 3}
     loop: 1
     volume: 1
     pitch: 1
