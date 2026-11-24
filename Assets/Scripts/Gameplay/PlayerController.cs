@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ghost Mode")]
     [SerializeField] private float _ghostDuration = 2f;
+    [SerializeField] private float _dropGhostDuration = 0.4f;
     [SerializeField] private float _maxGhostOverrun = 3f;
     [Range(0.1f, 1f)]
     [SerializeField] private float _ghostAlpha = 0.5f;
@@ -32,6 +33,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem _shootEffect;
     [SerializeField] private ParticleSystem _explosionEffect;
     [SerializeField] private string _deathSound = "player_death";
+
+    [Header("Temblor al morir (0 = sin temblor)")]
+    [SerializeField] private float _deathShakeIntensity = 0.4f;
+    [SerializeField] private float _deathShakeDuration = 0.5f;
 
     [Header("Sounds")]
     [SerializeField] private string _jumpSound = "jump";
@@ -100,6 +105,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!IsGhost) return;
 
+        UpdateGhostLook();
+
         _ghostTimer -= Time.deltaTime;
 
         bool timeUp = _ghostTimer <= 0f;
@@ -120,7 +127,7 @@ public class PlayerController : MonoBehaviour
         if (!IsOnGround() && !IsOnPlatform()) return;
 
         Velocity = new Vector2(0f, _jumpForce);
-        StartGhost(GhostMode.Rising);
+        StartGhost(GhostMode.Rising, _ghostDuration);
         PlayAnimation("Jump");
         GameAudio.PlaySfx(_jumpSound);
     }
@@ -131,7 +138,7 @@ public class PlayerController : MonoBehaviour
         if (IsGhost) return;
         if (IsOnGround()) return;
 
-        StartGhost(GhostMode.Timed);
+        StartGhost(GhostMode.Timed, _dropGhostDuration);
         PlayAnimation("Down");
         GameAudio.PlaySfx(_dropSound);
     }
@@ -183,11 +190,16 @@ public class PlayerController : MonoBehaviour
         if (_sprite != null) _sprite.enabled = false;
         if (_explosionEffect != null) _explosionEffect.Play();
         GameAudio.PlaySfx(_deathSound);
+
+        if (_deathShakeIntensity > 0f && CameraShake.Instance != null)
+        {
+            CameraShake.Instance.Shake(_deathShakeIntensity, _deathShakeDuration);
+        }
     }
 
-    private void StartGhost(GhostMode mode)
+    private void StartGhost(GhostMode mode, float duration)
     {
-        _ghostTimer = _ghostDuration;
+        _ghostTimer = duration;
         SetGhostMode(mode);
     }
 
@@ -205,13 +217,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (_sprite != null)
-        {
-            Color c = _sprite.color;
-            if (ghost) c.a = _ghostAlpha;
-            else c.a = 1f;
-            _sprite.color = c;
-        }
+        UpdateGhostLook();
+    }
+
+    private void UpdateGhostLook()
+    {
+        if (_sprite == null) return;
+
+        float alpha = 1f;
+        if (IsGhost && !IsOnGround()) alpha = _ghostAlpha;
+
+        Color c = _sprite.color;
+        if (Mathf.Approximately(c.a, alpha)) return;
+
+        c.a = alpha;
+        _sprite.color = c;
     }
 
     private bool IsInsidePlatform()

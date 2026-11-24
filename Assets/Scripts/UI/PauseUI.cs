@@ -21,19 +21,23 @@ public class PauseUI : UIWindow
 
     private void ReturnToGameplay()
     {
-        UIManager.Instance.HideWindow("pauseui");
+        if (!UIFlow.Begin()) return;
+
+        UIFlow.Hide("pauseui");
         DOVirtual.DelayedCall(1f, ShowGameplayUI, true);
     }
 
     private void ShowGameplayUI()
     {
-        UIManager.Instance.ShowWindow("gameplayui");
+        UIFlow.Show("gameplayui");
         if (GameManager.Instance != null) GameManager.Instance.Resume();
     }
 
     private void Retry()
     {
-        UIManager.Instance.HideWindow("pauseui");
+        if (!UIFlow.Begin()) return;
+
+        UIFlow.Hide("pauseui");
         DOVirtual.DelayedCall(1f, ReloadGameplay, true);
     }
 
@@ -41,12 +45,14 @@ public class PauseUI : UIWindow
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Gameplay");
-        UIManager.Instance.ShowWindow("gameplayui");
+        UIFlow.Show("gameplayui");
     }
 
     private void ReturnToMenu()
     {
-        UIManager.Instance.HideWindow("pauseui");
+        if (!UIFlow.Begin()) return;
+
+        UIFlow.Hide("pauseui");
         DOVirtual.DelayedCall(1f, LoadIntroAndOpenMenu, true);
     }
 
@@ -54,7 +60,7 @@ public class PauseUI : UIWindow
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Intro");
-        UIManager.Instance.ShowWindow("menuui");
+        UIFlow.Show("menuui");
     }
     #region Test Methods
     [Button("Test Show")]

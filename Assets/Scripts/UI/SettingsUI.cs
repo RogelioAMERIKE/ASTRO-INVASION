@@ -28,24 +28,30 @@ public class SettingsUI : UIWindow
     }
     private void ReturnToMenu()
     {
-        UIManager.Instance.HideWindow("settingsui");
+        if (!UIFlow.Begin()) return;
+
+        GameAudio.SaveVolumes();
+        UIFlow.Hide("settingsui");
         Invoke(nameof(ShowMenu), 1f);
     }
 
     private void ShowMenu()
     {
-        UIManager.Instance.ShowWindow("menuui");
+        UIFlow.Show("menuui");
     }
 
     private void OpenCredits()
     {
-        UIManager.Instance.HideWindow("settingsui");
+        if (!UIFlow.Begin()) return;
+
+        GameAudio.SaveVolumes();
+        UIFlow.Hide("settingsui");
         Invoke(nameof(ShowCredits), 1f);
     }
 
     private void ShowCredits()
     {
-        UIManager.Instance.ShowWindow("creditsui");
+        UIFlow.Show("creditsui");
     }
 
     private void OnMusicVolumeChanged(float value)

@@ -6,9 +6,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Visual")]
     [SerializeField] private SpriteRenderer _sprite;
-    [SerializeField] private Animator _animator;
     [SerializeField] private DroneSway _sway;
-    [SerializeField] private bool _playDeathAnimation = true;
     [SerializeField] private float _flashTime = 0.1f;
 
     [Header("Efectos de muerte")]
@@ -26,6 +24,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _gravity = 12f;
     [SerializeField] private float _maxSpin = 300f;
     [SerializeField] private float _maxSideSpeed = 2f;
+
+    [Header("Orden de dibujo")]
+    [SerializeField] private float _depthStep = 0.01f;
+
+    private static int _spawnCounter;
 
     private int _health;
     private bool _dying;
@@ -52,6 +55,11 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
+        _spawnCounter = (_spawnCounter + 1) % 20;
+        Vector3 position = transform.position;
+        position.z -= _spawnCounter * _depthStep;
+        transform.position = position;
+
         _health = _maxHealth;
         _dying = false;
 
@@ -60,7 +68,6 @@ public class Enemy : MonoBehaviour
 
         if (_sprite != null) _sprite.color = _normalColor;
         if (_sway != null) _sway.enabled = true;
-        if (_animator != null && _playDeathAnimation) _animator.ResetTrigger("Die");
 
         for (int i = 0; i < _colliders.Length; i++)
         {
@@ -134,7 +141,6 @@ public class Enemy : MonoBehaviour
         }
 
         if (_sway != null) _sway.enabled = false;
-        if (_animator != null && _playDeathAnimation) _animator.SetTrigger("Die");
         if (_explosionEffect != null) _explosionEffect.Play();
         if (_smokeEffect != null) _smokeEffect.Play();
         GameAudio.PlaySfx(_explosionSound);

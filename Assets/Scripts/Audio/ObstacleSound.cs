@@ -54,7 +54,7 @@ public class ObstacleSound : MonoBehaviour
             return;
         }
 
-        _fadeTween = DOVirtual.Float(1f, 0f, _fadeTime, SetFade).SetUpdate(true).OnComplete(FinishFade);
+        _fadeTween = DOVirtual.Float(1f, 0f, _fadeTime, SetFade).SetUpdate(true).SetLink(_holder).OnComplete(FinishFade);
     }
 
     private void OnDestroy()
@@ -65,11 +65,15 @@ public class ObstacleSound : MonoBehaviour
 
     private void Update()
     {
+        if (_source == null) return;
+
         _source.pitch = _basePitch * Time.timeScale;
     }
 
     private void SetFade(float value)
     {
+        if (_source == null) return;
+
         _source.volume = _baseVolume * value;
         _source.pitch = _basePitch * Time.timeScale;
     }
@@ -77,7 +81,7 @@ public class ObstacleSound : MonoBehaviour
     private void FinishFade()
     {
         _fadeTween = null;
-        _source.Stop();
+        if (_source != null) _source.Stop();
     }
 
     private void KillFade()

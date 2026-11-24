@@ -7,7 +7,6 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField] private ParticleSystem _trailEffect;
     [SerializeField] private ParticleSystem _hitEffect;
     [SerializeField] private float _effectTime = 0.5f;
-    [SerializeField] private string _hitSound = "player_bullet_hit";
 
     private SpriteRenderer _sprite;
     private Collider2D _collider;
@@ -61,7 +60,6 @@ public class PlayerBullet : MonoBehaviour
         if (_collider != null) _collider.enabled = false;
         if (_trailEffect != null) _trailEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         if (_hitEffect != null) _hitEffect.Play();
-        GameAudio.PlaySfx(_hitSound);
 
         Invoke(nameof(Deactivate), _effectTime);
     }
@@ -70,5 +68,4 @@ public class PlayerBullet : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
 }

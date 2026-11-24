@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         if (OnGameOver != null) OnGameOver(Score, RoundCoins);
 
         if (UIManager.Instance == null) return;
-        UIManager.Instance.HideWindow("gameplayui");
+        UIFlow.Hide("gameplayui");
         DOVirtual.DelayedCall(_uiDelay, ShowScoreUI, true);
     }
 
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
 
     private void ShowScoreUI()
     {
-        UIManager.Instance.ShowWindow("scoreui");
+        UIFlow.Show("scoreui");
     }
 
     private void NotifyStats()

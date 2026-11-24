@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ButtonSoundManaer : MonoBehaviour
+public class ButtonSoundManager : MonoBehaviour
 {
     private void OnEnable()
     {

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Dino.Utility.Audio;
+using System.Collections.Generic;
 using UnityEngine;
 using AudioType = Dino.Utility.Audio.AudioType;
 
@@ -14,6 +15,18 @@ public class GameAudio : MonoBehaviour
     private static AudioSource _fadeSource;
     private static float _fadePitch;
     private static float _fadeVolume;
+
+#if UNITY_EDITOR
+    private static readonly HashSet<string> _warnedNames = new HashSet<string>();
+#endif
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics()
+    {
+        _currentMusic = null;
+        _fadeTween = null;
+        _fadeSource = null;
+    }
 
     public static float MusicVolume
     {
@@ -34,7 +47,10 @@ public class GameAudio : MonoBehaviour
         for (int i = 0; i < names.Length; i++)
         {
             string name = names[i].Trim();
-            if (name != "") AudioManager.Instance.PlaySound(name);
+            if (name == "") continue;
+            if (!Exists(name)) continue;
+
+            AudioManager.Instance.PlaySound(name);
         }
     }
 
@@ -54,6 +70,7 @@ public class GameAudio : MonoBehaviour
     {
         if (string.IsNullOrEmpty(musicName)) return;
         if (AudioManager.Instance == null) return;
+        if (!Exists(musicName)) return;
 
         CancelFade();
         StopMusic();
@@ -87,7 +104,7 @@ public class GameAudio : MonoBehaviour
         _fadePitch = source.pitch;
         _fadeVolume = source.volume;
 
-        _fadeTween = DOVirtual.Float(1f, 0f, duration, SetFade).SetUpdate(true).OnComplete(FinishFade);
+        _fadeTween = DOVirtual.Float(1f, 0f, duration, SetFade).SetUpdate(true).SetLink(source.gameObject).OnComplete(FinishFade);
     }
 
     public static void PauseMusic()
@@ -102,10 +119,14 @@ public class GameAudio : MonoBehaviour
         if (source != null) source.UnPause();
     }
 
+    public static void SaveVolumes()
+    {
+        PlayerPrefs.Save();
+    }
+
     public static void SetMusicVolume(float value)
     {
         PlayerPrefs.SetFloat(MusicKey, value);
-        PlayerPrefs.Save();
 
         if (AudioManager.Instance != null)
         {
@@ -116,7 +137,6 @@ public class GameAudio : MonoBehaviour
     public static void SetSfxVolume(float value)
     {
         PlayerPrefs.SetFloat(SfxKey, value);
-        PlayerPrefs.Save();
 
         if (AudioManager.Instance != null)
         {
@@ -132,6 +152,19 @@ public class GameAudio : MonoBehaviour
         AudioManager.Instance.UpdateAudioMixerGroupVolume(SfxVolume, AudioType.SFX);
     }
 
+    private static bool Exists(string soundName)
+    {
+        if (AudioManager.Instance.AudioManagerData.GetAudioData(soundName) != null) return true;
+
+#if UNITY_EDITOR
+        if (_warnedNames.Add(soundName))
+        {
+            Debug.LogWarning("GameAudio: el sonido '" + soundName + "' no existe en AudioManagerData");
+        }
+#endif
+        return false;
+    }
+
     private static void FadeOutOneSfx(string soundName, float delay, float duration)
     {
         AudioSource source = FindSource(soundName);
@@ -142,12 +175,18 @@ public class GameAudio : MonoBehaviour
         DOTween.Kill(source);
         source.volume = startVolume;
 
-        DOVirtual.Float(1f, 0f, duration, value => source.volume = startVolume * value)
+        DOVirtual.Float(1f, 0f, duration, value =>
+        {
+            if (source != null) source.volume = startVolume * value;
+        })
             .SetTarget(source)
+            .SetLink(source.gameObject)
             .SetDelay(delay)
             .SetUpdate(true)
             .OnComplete(() =>
             {
+                if (source == null) return;
+
                 source.Stop();
                 source.volume = startVolume;
             });
@@ -155,6 +194,8 @@ public class GameAudio : MonoBehaviour
 
     private static void SetFade(float value)
     {
+        if (_fadeSource == null) return;
+
         _fadeSource.pitch = _fadePitch * value;
         _fadeSource.volume = _fadeVolume * value;
     }
@@ -162,7 +203,7 @@ public class GameAudio : MonoBehaviour
     private static void FinishFade()
     {
         _fadeTween = null;
-        _fadeSource.Stop();
+        if (_fadeSource != null) _fadeSource.Stop();
         RestoreFade();
     }
 

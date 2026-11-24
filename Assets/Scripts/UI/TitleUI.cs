@@ -1,5 +1,6 @@
-using UnityEngine;
+using DG.Tweening;
 using NaughtyAttributes;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class TitleUI : UIWindow
@@ -14,13 +15,15 @@ public class TitleUI : UIWindow
 
     private void CloseTitle()
     {
-        UIManager.Instance.HideWindow("titleui");
-        Invoke(nameof(OpenMenu), 1f);
+        if (!UIFlow.Begin()) return;
+
+        UIFlow.Hide("titleui");
+        DOVirtual.DelayedCall(1f, OpenMenu, true);
     }
 
     private void OpenMenu()
     {
-        UIManager.Instance.ShowWindow("menuui");
+        UIFlow.Show("menuui");
     }
     #region Test Methods
     [Button("Test Show")]

@@ -14,13 +14,15 @@ public class CreditsUI : UIWindow
 
     private void ReturnToSettings()
     {
-        UIManager.Instance.HideWindow("creditsui");
+        if (!UIFlow.Begin()) return;
+
+        UIFlow.Hide("creditsui");
         Invoke(nameof(OpenSettings), 1f);
     }
 
     private void OpenSettings()
     {
-        UIManager.Instance.ShowWindow("settingsui");
+        UIFlow.Show("settingsui");
     }
 
     #region Test Methods

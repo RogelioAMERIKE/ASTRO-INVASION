@@ -56,6 +56,12 @@ public class Coin : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (_visual != null) _visual.DOKill();
+        if (_sprite != null) _sprite.DOKill();
+    }
+
     public void Collect()
     {
         if (_collected) return;
@@ -78,13 +84,20 @@ public class Coin : MonoBehaviour
             if (_animator != null) _animator.enabled = false;
 
             _visual.DOScale(_startScale * _popScale, _popTime);
-            _sprite.DOFade(0f, _popTime);
+            DOVirtual.Float(1f, 0f, _popTime, SetSpriteAlpha).SetTarget(_sprite);
             hideDelay = _popTime;
         }
 
         if (_collectEffect != null) hideDelay = Mathf.Max(hideDelay, _effectTime);
 
         Invoke(nameof(Hide), hideDelay);
+    }
+
+    private void SetSpriteAlpha(float value)
+    {
+        Color color = _startColor;
+        color.a = _startColor.a * value;
+        _sprite.color = color;
     }
 
     private void Hide()

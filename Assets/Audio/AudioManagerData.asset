@@ -103,3 +103,15 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioType: 1
+  - name: shop_buy
+    clip: {fileID: 8300000, guid: 14bbf434582b1b24f9458917eb958ac7, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1
+  - name: shop_denied
+    clip: {fileID: 8300000, guid: 0c31facd39bdfa44fbc0c5203c57ed3b, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    audioType: 1

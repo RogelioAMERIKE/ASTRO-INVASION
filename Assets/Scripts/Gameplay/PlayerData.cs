@@ -23,6 +23,15 @@ public static class PlayerData
         }
     }
 
+    public static int DamageLevel
+    {
+        get
+        {
+            Load();
+            return _damageLevel;
+        }
+    }
+
     public static bool IsMaxUpgrade
     {
         get

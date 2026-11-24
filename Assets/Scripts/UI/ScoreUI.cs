@@ -37,7 +37,9 @@ public class ScoreUI : UIWindow
 
     private void Retry()
     {
-        UIManager.Instance.HideWindow("scoreui");
+        if (!UIFlow.Begin()) return;
+
+        UIFlow.Hide("scoreui");
         DOVirtual.DelayedCall(1f, ReloadGameplay, true);
     }
 
@@ -45,12 +47,14 @@ public class ScoreUI : UIWindow
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Gameplay");
-        UIManager.Instance.ShowWindow("gameplayui");
+        UIFlow.Show("gameplayui");
     }
 
     private void ReturnToMenu()
     {
-        UIManager.Instance.HideWindow("scoreui");
+        if (!UIFlow.Begin()) return;
+
+        UIFlow.Hide("scoreui");
         DOVirtual.DelayedCall(1f, LoadIntroAndOpenMenu, true);
     }
 
@@ -58,7 +62,7 @@ public class ScoreUI : UIWindow
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Intro");
-        UIManager.Instance.ShowWindow("menuui");
+        UIFlow.Show("menuui");
     }
     #region Test Methods
     [Button("Test Show")]

@@ -77,17 +77,18 @@ public class GameplayUI : UIWindow
     private void OpenPauseUI()
     {
         if (GameManager.Instance == null) return;
+        if (UIFlow.IsBusy) return;
         if (!GameManager.Instance.Pause()) return;
 
-        UIManager.Instance.HideWindow("gameplayui");
+        UIFlow.Begin();
+        UIFlow.Hide("gameplayui");
         DOVirtual.DelayedCall(1f, ShowPauseUI, true);
     }
 
     private void ShowPauseUI()
     {
-        UIManager.Instance.ShowWindow("pauseui");
+        UIFlow.Show("pauseui");
     }
-
     #region Test Methods
     [Button("Test Show")]
     private void TestShow()

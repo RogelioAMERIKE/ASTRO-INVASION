@@ -22,36 +22,42 @@ public class MenuUI : UIWindow
 
     private void PlayGame()
     {
-        UIManager.Instance.HideWindow("menuui");
+        if (!UIFlow.Begin()) return;
+
+        UIFlow.Hide("menuui");
         Invoke(nameof(LoadGameplay), 1f);
     }
 
     private void LoadGameplay()
     {
         SceneManager.LoadScene("Gameplay");
-        UIManager.Instance.ShowWindow("gameplayui");
+        UIFlow.Show("gameplayui");
     }
 
     private void OpenShop()
     {
-        UIManager.Instance.HideWindow("menuui");
+        if (!UIFlow.Begin()) return;
+
+        UIFlow.Hide("menuui");
         Invoke(nameof(ShowShop), 1f);
     }
 
     private void ShowShop()
     {
-        UIManager.Instance.ShowWindow("shopui");
+        UIFlow.Show("shopui");
     }
 
     private void OpenSettings()
     {
-        UIManager.Instance.HideWindow("menuui");
+        if (!UIFlow.Begin()) return;
+
+        UIFlow.Hide("menuui");
         Invoke(nameof(ShowSettings), 1f);
     }
 
     private void ShowSettings()
     {
-        UIManager.Instance.ShowWindow("settingsui");
+        UIFlow.Show("settingsui");
     }
 
     private void QuitGame()

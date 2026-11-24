@@ -268,6 +268,7 @@ MonoBehaviour:
   _gravity: 12
   _maxSpin: 300
   _maxSideSpeed: 2
+  _depthStep: 0.01
 --- !u!114 &7732010068538715980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +285,7 @@ MonoBehaviour:
   _firePoint: {fileID: 1746060189004420221}
   _animator: {fileID: 36275005738566916}
   _fireInterval: 2
-  _bulletSpeed: 8
+  _bulletSpeed: 10
   _bulletLifetime: 6
   _shootEffect: {fileID: 598139046050455711}
   _recoilDistance: 0.6
